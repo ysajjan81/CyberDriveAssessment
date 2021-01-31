@@ -8,7 +8,9 @@ def registration(request):
     name = request.GET.get('name', 'default')
     password = request.GET.get('password','default')
     email = request.GET.get('email', 'default')
-    return HttpResponse("Hi " + name + "your email is: " + email)
+    print(name + ' ' + email + ' ' + password)
+    # return HttpResponse("Hi " + name + "your email is: " + email)
+    return render(request, 'login.html')
 
 def about(request):
     return HttpResponse("About me")
