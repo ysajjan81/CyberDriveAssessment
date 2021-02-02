@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-
 import  re
 
 # check email is valid or not
@@ -107,3 +106,98 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def resetpassword(request):
+    if request.method == 'GET':
+        return render(request, 'resetpassword.html')
+    else:
+        name = None
+        if request.user.is_authenticated:
+            name = request.user.username
+
+        oldpassword = request.POST['oldpassword']
+        newpassword = request.POST['newpassword']
+        confirmpassword = request.POST['confirmpassword']
+        user = auth.authenticate(username = name, password = oldpassword)
+
+        if user is not None:
+            print("password exist")
+            if newpassword == confirmpassword:
+                # update password in db
+                if is_valid_password(newpassword) == True:
+                    u = User.objects.get(username = name)
+                    u.set_password(newpassword)
+                    u.save()
+                    print("Password updated successfully !!!")
+                    return redirect('login')
+                else:
+                    print("password not exist!!")
+                    msg = "Invalid Password"
+                    messages.info(request, msg)
+                    return redirect('resetpassword')
+            else:
+                msg = "Password not matching"
+                messages.info(request, msg)
+                return redirect('resetpassword')
+        else:
+            print("password not exist !!")
+            msg = "password not exist !!!"
+            messages.info(request, msg)
+            return redirect('resetpassword')
+
+
+def resetusername(request):
+    if request.method == 'GET':
+        return render(request, 'resetusername.html')
+    else:
+        currentName = None
+        if request.user.is_authenticated:
+            currentName = request.user.username
+        print(currentName)
+
+        newUserName = request.POST['newusername']
+        password = request.POST['password']
+        print("new user = ", newUserName)
+        print("pass = ", password)
+
+        user = auth.authenticate(username = currentName, password = password)
+        if user is not None:
+            u = User.objects.get(username=currentName)
+            u.username = newUserName
+            u.save()
+            print("UserName updated successfully !!!")
+            return redirect('/')
+        return redirect('/')
+
+def resetemail(request):
+    if request.method == "GET":
+        return render(request, "resetemail.html")
+    else:
+        currentName = None
+        if request.user.is_authenticated:
+            currentName = request.user.username
+        print(currentName)
+
+        newEmail = request.POST['newemail']
+        password = request.POST['password']
+        print("new email = ", newEmail)
+        print("password = ", password)
+
+        user = auth.authenticate(username = currentName, password = password)
+        if user is not None:
+            print("Exist user and password")
+            if not is_valid_email(newEmail):
+                msg = "invalid Email !!!"
+                messages.info(request, msg)
+                return redirect('resetemail')
+
+            u = User.objects.get(username=currentName)
+            u.email = newEmail
+            u.save()
+            print("Email updated successfully !!!")
+            return redirect('/')
+        else:
+            msg = "invalid Password!!!"
+            messages.info(request, msg)
+            print(msg)
+            return redirect('resetemail')
