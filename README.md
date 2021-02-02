@@ -18,7 +18,7 @@ Superuser password  - Samsung@135
 
 ### App Walkthough GIF
 
-<img src="walkthrough.gif" width=500 height=500><br>
+<img src="walkthrough.gif" width=800 height=400><br>
 ## Template used 
 - Travello - (https://colorlib.com/wp/template/travello/)<br>
 - Form - (https://www.w3docs.com/learn-html/html-form-templates.html)
