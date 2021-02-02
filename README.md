@@ -1,5 +1,5 @@
 # CyberDriveAssessment
-## Api Credentials End point
+## Api Credentials End points
 
 ### User Stories
 
@@ -13,9 +13,14 @@
 - [X] The API should have a superuser & a working admin dashboard. Include the superuser login credentials in your submission.
 
 
+Superuser user name - Sajjan
+Superuser password  - Samsung@135
+
 ### App Walkthough GIF
 
 <img src="walkthrough.gif" width=800 height=800><br>
+## Template used 
+- Travello - (https://colorlib.com/wp/template/travello/)
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
