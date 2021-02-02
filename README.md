@@ -15,7 +15,7 @@
 
 ### App Walkthough GIF
 
-<img src="walkthrough.gif" width=250><br>
+<img src="walkthrough.gif" width=800><br>
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
