@@ -8,8 +8,6 @@ def registration(request):
     name = request.POST.get('name', 'default')
     password = request.POST.get('password','default')
     email = request.POST.get('email', 'default')
-    print(name + ' ' + email + ' ' + password)
-    # return HttpResponse("Hi " + name + "your email is: " + email)
     return render(request, 'login.html')
 
 def login(request):

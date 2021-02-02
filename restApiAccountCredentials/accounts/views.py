@@ -25,34 +25,33 @@ def is_valid_password(passwd):
     val = True
 
     if len(passwd) < 6:
-        print('length should be at least 6')
+        # print('length should be at least 6')
         val = False
 
     if len(passwd) > 20:
-        print('length should be not be greater than 8')
+        # print('length should be not be greater than 8')
         val = False
 
     if not any(char.isdigit() for char in passwd):
-        print('Password should have at least one numeral')
+        # print('Password should have at least one numeral')
         val = False
 
     if not any(char.isupper() for char in passwd):
-        print('Password should have at least one uppercase letter')
+        # print('Password should have at least one uppercase letter')
         val = False
 
     if not any(char.islower() for char in passwd):
-        print('Password should have at least one lowercase letter')
+        # print('Password should have at least one lowercase letter')
         val = False
 
     if not any(char in SpecialSym for char in passwd):
-        print('Password should have at least one of the symbols $@#')
+        # print('Password should have at least one of the symbols $@#')
         val = False
     if val:
         return val
 
 def register(request):
     if request.method == 'POST':
-
         name = request.POST["name"]
         password = request.POST["password"]
         email = request.POST["email"]
@@ -60,13 +59,11 @@ def register(request):
         if not is_valid_email(email):
             msg = "Invalid Email Address !!!"
             messages.info(request, msg)
-            param = {'message' : msg}
             return redirect('register')
 
         elif User.objects.filter(email = email).exists():
             msg = "Email Address Already Exists !!!"
             messages.info(request, msg)
-            param = {'message' : msg}
             return redirect('register')
 
         elif not is_valid_password(password):
@@ -77,7 +74,6 @@ def register(request):
         elif User.objects.filter(username = name).exists():
             msg = "Name Already Exists !!!"
             messages.info(request, msg)
-            param = {'message' : msg}
             return redirect('register')
         else:
             user = User.objects.create_user(username=name, password=password, email=email)
@@ -121,18 +117,18 @@ def resetpassword(request):
         user = auth.authenticate(username = name, password = oldpassword)
 
         if user is not None:
-            print("password exist")
+            # print("password exist")
             if newpassword == confirmpassword:
                 # update password in db
                 if is_valid_password(newpassword) == True:
                     u = User.objects.get(username = name)
                     u.set_password(newpassword)
                     u.save()
-                    print("Password updated successfully !!!")
+                    # print("Password updated successfully !!!")
                     return redirect('login')
                 else:
                     print("password not exist!!")
-                    msg = "Invalid Password"
+                    # msg = "Invalid Password"
                     messages.info(request, msg)
                     return redirect('resetpassword')
             else:
@@ -140,7 +136,7 @@ def resetpassword(request):
                 messages.info(request, msg)
                 return redirect('resetpassword')
         else:
-            print("password not exist !!")
+            # print("password not exist !!")
             msg = "password not exist !!!"
             messages.info(request, msg)
             return redirect('resetpassword')
