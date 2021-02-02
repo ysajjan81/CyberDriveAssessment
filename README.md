@@ -23,5 +23,3 @@ Superuser password  - Samsung@135
 - Travello - (https://colorlib.com/wp/template/travello/)<br>
 - Form - (https://www.w3docs.com/learn-html/html-form-templates.html)
 
-## Open-source libraries used
-- [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
