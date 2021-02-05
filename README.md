@@ -1,8 +1,9 @@
-# CyberDriveAssessment
+# Cyber Drive Assessment
 
 ## Api Credentials End points
 
 ## Intallation and setup
+- install python 
 - pip install django
 - git clone https://github.com/ysajjan81/CyberDriveAssessment.git
 - cd restApiAccountCredentials
@@ -18,8 +19,11 @@
 - [X] The API should be run with the command: python manage.py runserver without any issues.
 - [X] The API should have a superuser & a working admin dashboard. Include the superuser login credentials in your submission.
 
-Superuser user name - Sajjan
-Superuser password  - Samsung@135
+## Superuser user name - Sajjan 
+
+<br>
+
+## Superuser password  - Samsung@135
 
 ### App Walkthough GIF
 <img src="walkthrough.gif" width=800 height=400><br>
