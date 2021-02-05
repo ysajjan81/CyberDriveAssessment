@@ -6,11 +6,32 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 import  re
-
+from rest_framework.authtoken.views import obtain_auth_token
 # check email is valid or not
+from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
+from django.contrib.auth.models import User
+# receiver
+def login_success(sender, request, user,  **kwargs):
+    print("_--------------------")
+    print("logged out Signal ..... Run intro")
+    print("sender:", sender)
+    print("request:", request)
+    print("user:", user)
+    print(f'Kwargs: {kwargs}')
+
+def logout_success(sender, request, user,  **kwargs):
+    print("_--------------------")
+    print("logged in Signal ..... Run intro")
+    print("sender:", sender)
+    print("request:", request)
+    print("user:", user)
+    print(f'Kwargs: {kwargs}')
+
+user_logged_in.connect(login_success, sender=User)
+user_logged_out.connect(logout_success, sender=User)
+
+
 def is_valid_email(email):
-    # pass the regular expression
-    # and the string in search() method
     regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
     if (re.search(regex, email)):
         print("Valid Email")
@@ -82,6 +103,9 @@ def register(request):
     else:
         return render(request, 'register.html')
 
+def issueToken():
+    pass
+
 def login(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -91,6 +115,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
+            # issueToken()
             return redirect('/')
         else:
             msg = "invalid credentials"
@@ -98,6 +123,7 @@ def login(request):
             return redirect('login')
     else:
         return render(request, 'login.html')
+
 
 def logout(request):
     auth.logout(request)
@@ -128,7 +154,7 @@ def resetpassword(request):
                     return redirect('login')
                 else:
                     print("password not exist!!")
-                    # msg = "Invalid Password"
+                    msg = "Invalid Password"
                     messages.info(request, msg)
                     return redirect('resetpassword')
             else:
