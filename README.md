@@ -2,8 +2,16 @@
 
 ## Api Credentials End points
 
+## Requirements 
+- Python 3.8
+- pip 20.2.3
 ## Intallation and setup
-- install python 
+
+- Create Virtual Environment 
+1. pip install virtualenvwrapper-win
+2. mkvirtualenv envname 
+3. workon envname
+( you can direct install django in system)
 - pip install django
 - git clone https://github.com/ysajjan81/CyberDriveAssessment.git
 - cd restApiAccountCredentials
@@ -20,7 +28,7 @@
 - [X] The API should have a superuser & a working admin dashboard. Include the superuser login credentials in your submission.
 
 ## Superuser Credential 
-- Name - Sajjan 
+- Name - sajjan 
 - Password - Samsung@135
 
 ### App Walkthough GIF
