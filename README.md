@@ -5,14 +5,16 @@
 ## Requirements 
 - Python 3.8
 - pip 20.2.3
+
 ## Intallation and setup
 
 - Create Virtual Environment 
-1. pip install virtualenvwrapper-win
-2. mkvirtualenv envname 
-3. workon envname
+    1. pip install virtualenvwrapper-win
+    2. mkvirtualenv envname 
+    3. workon envname
 ( you can direct install django in system)
 - pip install django
+- pip install djangorestframework
 - git clone https://github.com/ysajjan81/CyberDriveAssessment.git
 - cd restApiAccountCredentials
 - python manage.py runserver

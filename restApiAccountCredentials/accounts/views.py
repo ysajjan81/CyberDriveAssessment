@@ -94,7 +94,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('/')
+            return redirect('/', 'gettoken')
 
         else:
             msg = "invalid credentials"
